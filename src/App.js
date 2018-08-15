@@ -8,10 +8,17 @@ import * as FoursquareAPI from './FoursquareAPI'
 
 class App extends Component {
 
+  state = {
+    venues: []
+  }
+
   componentDidMount() {
     FoursquareAPI.getAllVenues()
       .then((venues) => {
         console.log(venues)
+        this.setState({
+          venues: venues
+        })
       })
   }
 
@@ -24,7 +31,10 @@ class App extends Component {
         <main className="main">
           <Map/>
 
-          <Search/>
+          <Search
+            venues={this.state.venues}
+          />
+
         </main>
         <Footer/>
       </div>

@@ -9,6 +9,14 @@ class Search extends Component {
                 </div>
                 <div className="search-results">
                     <ol className="items-list">
+                        {this.props.venues.map(venue => {
+                                return (
+                                    <li key={venue.id}>
+                                        {venue.name}
+                                    </li>
+                                )
+                            })
+                        }
                     </ol>
                 </div>
             </aside>
