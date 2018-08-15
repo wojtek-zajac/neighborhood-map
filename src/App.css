@@ -1,5 +1,14 @@
+html,
+body,
+main {
+  height: 100%;
+  width: 100%;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .App-logo {
@@ -10,6 +19,13 @@
 .App-header {
   background-color: #222;
   height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.footer {
+  background-color: #222;
+  height: 50px;
   padding: 20px;
   color: white;
 }
@@ -25,4 +41,15 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.aside {
+  box-sizing: border-box;
+}
+
+.search {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    background: lightblue;
 }

@@ -20,12 +20,12 @@ class Map extends Component {
         ));
       
         return(
-            <div>
+            <div className="map-container">
                 <MapWithAMarker
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDziy5R3lKj_zp1jOfiuH-TAncmOqG1MGo&v=3.exp&libraries=geometry,drawing,places"
                     loadingElement={<div style={{ height: `100%` }} />}
-                    containerElement={<div style={{ height: `400px` }} />}
-                    mapElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div style={{ height: `600px` }} />}
+                    mapElement={<div style={{ height: `100%`}} />}
                 />
             </div>
         )

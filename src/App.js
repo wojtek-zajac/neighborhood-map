@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Map from './Components/Map'
+import Header from './Components/Header'
+import Search from './Components/Search'
+import Footer from './Components/Footer'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Kraków</h1>
-        </header>
         
-        <Map/>
+        <Header/>
 
+        <main className="main">
+          <Map/>
+
+          <Search/>
+        </main>
+        <Footer/>
       </div>
     );
   }
