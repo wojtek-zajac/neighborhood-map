@@ -13,11 +13,11 @@ class App extends Component {
     query: ''
   }
 
-  // updateQuery = (query) => {
-  //   this.setState({
-  //       query: query.target.value
-  //   })
-  // }
+  updateQuery = (query) => {
+    this.setState({
+        query: query
+    })
+  }
   
   // https://stackoverflow.com/questions/40722382/how-to-pass-state-back-to-parent-in-react
 
@@ -43,7 +43,7 @@ class App extends Component {
           <Search
             venues={this.state.venues}
             query={this.state.query}
-            // updateQuery={this.updateQuery.bind(this)}
+            updateQuery={this.updateQuery.bind(this)}
           />
 
         </main>

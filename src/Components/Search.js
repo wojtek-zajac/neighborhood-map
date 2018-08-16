@@ -11,21 +11,21 @@ class Search extends Component {
      // handleSearchInput: PropTypes.func.isRequired
     }
 
-    state = {
-        name: ''
-    }
+//     state = {
+//         name: ''
+//     }
 
-    updateQuery = (query) => {
-    this.setState({
-        name: query.trim()
-    })
-  }
+//     updateQuery = (query) => {
+//     this.setState({
+//         name: query.trim()
+//     })
+//   }
 
     render() {
 
         let showingNames
-        if (this.state.name) {
-            const match = new RegExp(escapeRegExp(this.state.name), 'i')
+        if (this.props.query) {
+            const match = new RegExp(escapeRegExp(this.props.query), 'i')
             showingNames = this.props.venues.filter((venue) => match.test(venue.name))
         } else {
             showingNames = this.props.venues
@@ -40,8 +40,9 @@ class Search extends Component {
                         type="text" 
                         placeholder="Search for restaurants" 
                         className="search-input"
-                        value={this.state.name}
-                        onChange={(event) => this.updateQuery(event.target.value)}
+                        // value={this.state.name}
+                        value={this.props.query}
+                        onChange={(event) => this.props.updateQuery(event.target.value)}
                     >
                     </input>
                     {JSON.stringify(this.state)}

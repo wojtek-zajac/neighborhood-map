@@ -4,7 +4,7 @@ import {
     withGoogleMap,
     GoogleMap,
     Marker,
-  } from "react-google-maps";
+  } from "react-google-maps"
   
 class Map extends Component {
     render() {
@@ -13,9 +13,12 @@ class Map extends Component {
                 defaultZoom={13}
                 defaultCenter={{ lat: 50.06465, lng: 19.94498 }}
             >
-            <Marker
-                position={{ lat: 50.06465, lng: 19.94498 }}
-            />
+                <Marker
+                    position={{ lat: 50.06465, lng: 19.94498 }}
+                />
+                <Marker 
+                    position={{ lat: 50.06565, lng: 19.95498 }}
+                />
             </GoogleMap>
         ));
       
