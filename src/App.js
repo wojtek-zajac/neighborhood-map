@@ -9,8 +9,17 @@ import * as FoursquareAPI from './FoursquareAPI'
 class App extends Component {
 
   state = {
-    venues: []
+    venues: [],
+    query: ''
   }
+
+  // updateQuery = (query) => {
+  //   this.setState({
+  //       query: query.target.value
+  //   })
+  // }
+  
+  // https://stackoverflow.com/questions/40722382/how-to-pass-state-back-to-parent-in-react
 
   componentDidMount() {
     FoursquareAPI.getAllVenues()
@@ -33,6 +42,8 @@ class App extends Component {
 
           <Search
             venues={this.state.venues}
+            query={this.state.query}
+            // updateQuery={this.updateQuery.bind(this)}
           />
 
         </main>
