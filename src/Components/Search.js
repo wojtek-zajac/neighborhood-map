@@ -45,7 +45,7 @@ class Search extends Component {
                         onChange={(event) => this.props.updateQuery(event.target.value)}
                     >
                     </input>
-                    {JSON.stringify(this.state)}
+                    {JSON.stringify(`App query state: ${this.props.query}`)}
                 </div>
                 <div className="search-results">
                     <ul className="items-list">
