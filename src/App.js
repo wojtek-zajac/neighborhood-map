@@ -41,7 +41,9 @@ class App extends Component {
         <Header/>
 
         <main className="main">
-          <Map/>
+          <Map
+            venues={this.state.venues}
+          />
 
           <Search
             venues={this.state.venues}

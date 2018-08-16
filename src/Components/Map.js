@@ -9,7 +9,9 @@ import {
 class Map extends Component {
     
     state = {
-        map: null
+        map: null,
+        markers: [],
+        filteredMarkers: []
     }
 
     componentDidMount() {
@@ -18,11 +20,9 @@ class Map extends Component {
                 defaultZoom={13}
                 defaultCenter={{ lat: 50.06465, lng: 19.94498 }}
             >
+
                 <Marker
                     position={{ lat: 50.06465, lng: 19.94498 }}
-                />
-                <Marker
-                    position={{ lat: 50.06565, lng: 19.95498 }}
                 />
             </GoogleMap>
         ));
@@ -36,6 +36,40 @@ class Map extends Component {
 
         this.setState({map})
     }
+
+
+    // componentDidUpdate() {
+    //     if (!this.state.markers) {
+    //       const markers = []
+    //       this.props.venues.map(venue => {
+    //         const latLng = {lat: venue.location.lat, lng: venue.location.lng}
+    //         const marker =  withScriptjs(withGoogleMap(props =>
+
+    //         <Marker position={latLng}/>
+    //     ));
+    //         markers.push(marker)
+    //      })}
+    // }      
+       
+
+
+    ComponentDidUpdate() {
+        if (!this.state.markers) {      
+          const markers = this.props.venues.map(venue => {
+            const latLng = {lat: venue.location.lat, lng: venue.location.lng}
+            const marker = <Marker position={latLng}/>
+    
+            return marker
+          })
+          this.setState({
+            markers,
+            filteredMarkers: markers
+          })
+        }
+      }
+
+
+
 
     render() {
         return(
