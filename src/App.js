@@ -10,6 +10,7 @@ class App extends Component {
 
   state = {
     venues: [],
+    venueIds: [],
     query: ''
   }
 
@@ -18,17 +19,19 @@ class App extends Component {
         query: query
     })
   }
-  
   // https://stackoverflow.com/questions/40722382/how-to-pass-state-back-to-parent-in-react
 
   componentDidMount() {
     FoursquareAPI.getAllVenues()
-      .then((venues) => {
+      .then(venues => {
+        const venueIds = venues.map(venue => venue.id)
         console.log(venues)
+        console.log(venueIds)
         this.setState({
-          venues: venues
+          venues,
+          venueIds
         })
-      })
+      })   
   }
 
   render() {

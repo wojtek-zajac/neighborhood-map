@@ -8,18 +8,8 @@ class Search extends Component {
     static propTypes = {
         venues: PropTypes.array.isRequired,
         query: PropTypes.string.isRequired,
-     // handleSearchInput: PropTypes.func.isRequired
+        updateQuery: PropTypes.func.isRequired
     }
-
-//     state = {
-//         name: ''
-//     }
-
-//     updateQuery = (query) => {
-//     this.setState({
-//         name: query.trim()
-//     })
-//   }
 
     render() {
 
@@ -40,7 +30,6 @@ class Search extends Component {
                         type="text" 
                         placeholder="Search for restaurants" 
                         className="search-input"
-                        // value={this.state.name}
                         value={this.props.query}
                         onChange={(event) => this.props.updateQuery(event.target.value)}
                     >
