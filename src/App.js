@@ -11,16 +11,8 @@ class App extends Component {
   state = {
     venues: [],
     venueIds: [],
-    query: '',
     visibleVenues: []
   }
-
-  updateQuery = (query) => {
-    this.setState({
-        query: query
-    })
-  }
-  // https://stackoverflow.com/questions/40722382/how-to-pass-state-back-to-parent-in-react
 
   updateVisibleVenues = (visibleVenues) => {
     this.setState({
@@ -36,7 +28,8 @@ class App extends Component {
         console.log(venueIds)
         this.setState({
           venues,
-          venueIds
+          venueIds,
+          visibleVenues: venues
         })
       })   
   }
@@ -49,24 +42,18 @@ class App extends Component {
 
         <main className="main">
           <Map2
-            venues={this.state.venues}
+            venues={this.state.visibleVenues}
             visibleVenues={this.state.visibleVenues}
-
-
-
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDziy5R3lKj_zp1jOfiuH-TAncmOqG1MGo&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `600px` }} />}
             mapElement={<div style={{ height: `100%`}} />}
-
-          markers = {this.state.markers}
-
+            markers = {this.state.markers}
           />
 
           <Search
             venues={this.state.venues}
-            query={this.state.query}
-            updateQuery={this.updateQuery.bind(this)}
+            visibleVenues={this.state.visibleVenues}
             updateVisibleVenues={this.updateVisibleVenues.bind(this)}
           />
 

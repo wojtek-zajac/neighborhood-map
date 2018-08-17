@@ -7,30 +7,26 @@ class Search extends Component {
 
     static propTypes = {
         venues: PropTypes.array.isRequired,
-        query: PropTypes.string.isRequired,
-        updateQuery: PropTypes.func.isRequired
+        visibleVenues: PropTypes.array.isRequired,
+        updateVisibleVenues: PropTypes.func.isRequired
     }
 
-    handleChange = (showingNames) => {
-        console.log(showingNames)
-        this.props.updateVisibleVenues(showingNames)
-    }
-
-    render() {
-
+    onFilterChange(query) {
         let showingNames
-        if (this.props.query) {
-            const match = new RegExp(escapeRegExp(this.props.query), 'i')
+
+        if (query) {
+            const match = new RegExp(escapeRegExp(query), 'i')
             showingNames = this.props.venues.filter((venue) => match.test(venue.name))
-            
         } else {
             showingNames = this.props.venues
         }
 
-        this.props.venues.sort(sortBy('name'))
-        
+        showingNames.sort(sortBy('name'))
 
+        this.props.updateVisibleVenues(showingNames)
+    }
 
+    render() {
         return(
             <aside className="search">
                 <div className="search-header">
@@ -38,19 +34,14 @@ class Search extends Component {
                         type="text" 
                         placeholder="Search for restaurants" 
                         className="search-input"
-                        value={this.props.query}
-                        onChange={(event) => {
-                            this.props.updateQuery(event.target.value)
-                            this.props.updateVisibleVenues(showingNames)
-                            }
-                        }
+                        value={this.showingNames}
+                        onChange={(event) => this.onFilterChange(event.target.value)}
                     >
                     </input>
-                    {JSON.stringify(`App query state: ${this.props.query}`)}
                 </div>
                 <div className="search-results">
                     <ul className="items-list">
-                       {showingNames.map(venue => {
+                       {this.props.visibleVenues.map(venue => {
                                 return (
                                     <li key={venue.id}>
                                         {venue.name}
