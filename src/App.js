@@ -12,30 +12,7 @@ class App extends Component {
     venues: [],
     venueIds: [],
     query: '',
-
-
-
-    markers: [
-      {"id": "Ancient Roman theatre",
-      "position": {lat: 42.146884, lng: 24.751097}
-    },
-      {"id": "Roman staduim Philipopol",
-      "position": {lat: 42.147719, lng: 24.748050}
-    },
-      {"id": "Old town",
-      "position": {lat: 42.151076, lng: 24.752288}
-    },
-      {"id": "Singin fountaines",
-      "position": {lat: 42.140633, lng: 24.745798}
-    },
-      {"id": "Monument of union",
-      "position": {lat: 42.151364, lng: 24.744446}
-    }
-]
-
-
-
-
+    visibleVenues: []
   }
 
   updateQuery = (query) => {
@@ -44,6 +21,12 @@ class App extends Component {
     })
   }
   // https://stackoverflow.com/questions/40722382/how-to-pass-state-back-to-parent-in-react
+
+  updateVisibleVenues = (visibleVenues) => {
+    this.setState({
+      visibleVenues: visibleVenues
+    })
+  }
 
   componentDidMount() {
     FoursquareAPI.getAllVenues()
@@ -67,12 +50,15 @@ class App extends Component {
         <main className="main">
           <Map2
             venues={this.state.venues}
+            visibleVenues={this.state.visibleVenues}
+
+
 
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDziy5R3lKj_zp1jOfiuH-TAncmOqG1MGo&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `600px` }} />}
             mapElement={<div style={{ height: `100%`}} />}
-            
+
           markers = {this.state.markers}
 
           />
@@ -81,6 +67,7 @@ class App extends Component {
             venues={this.state.venues}
             query={this.state.query}
             updateQuery={this.updateQuery.bind(this)}
+            updateVisibleVenues={this.updateVisibleVenues.bind(this)}
           />
 
         </main>

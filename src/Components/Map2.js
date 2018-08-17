@@ -11,9 +11,9 @@ const { compose, withProps, withStateHandlers } = require("recompose")
   {onToggleOpen: ({ isOpen }) => () => ({
       isOpen: !isOpen,
     }),
-    showInfo: ({ showInfo, isOpen }) => (a) => ({
+    showInfo: ({ showInfo, isOpen }) => (i) => ({
       isOpen: !isOpen,
-      showInfoIndex: a
+      showInfoIndex: i
     })
   }),
 

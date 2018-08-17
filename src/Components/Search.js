@@ -11,17 +11,25 @@ class Search extends Component {
         updateQuery: PropTypes.func.isRequired
     }
 
+    handleChange = (showingNames) => {
+        console.log(showingNames)
+        this.props.updateVisibleVenues(showingNames)
+    }
+
     render() {
 
         let showingNames
         if (this.props.query) {
             const match = new RegExp(escapeRegExp(this.props.query), 'i')
             showingNames = this.props.venues.filter((venue) => match.test(venue.name))
+            
         } else {
             showingNames = this.props.venues
         }
 
         this.props.venues.sort(sortBy('name'))
+        
+
 
         return(
             <aside className="search">
@@ -31,14 +39,18 @@ class Search extends Component {
                         placeholder="Search for restaurants" 
                         className="search-input"
                         value={this.props.query}
-                        onChange={(event) => this.props.updateQuery(event.target.value)}
+                        onChange={(event) => {
+                            this.props.updateQuery(event.target.value)
+                            this.props.updateVisibleVenues(showingNames)
+                            }
+                        }
                     >
                     </input>
                     {JSON.stringify(`App query state: ${this.props.query}`)}
                 </div>
                 <div className="search-results">
                     <ul className="items-list">
-                        {showingNames.map(venue => {
+                       {showingNames.map(venue => {
                                 return (
                                     <li key={venue.id}>
                                         {venue.name}
