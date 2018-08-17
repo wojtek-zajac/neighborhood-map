@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Map from './Components/Map'
+import Map2 from './Components/Map2'
 import Header from './Components/Header'
 import Search from './Components/Search'
 import Footer from './Components/Footer'
@@ -11,7 +11,31 @@ class App extends Component {
   state = {
     venues: [],
     venueIds: [],
-    query: ''
+    query: '',
+
+
+
+    markers: [
+      {"id": "Ancient Roman theatre",
+      "position": {lat: 42.146884, lng: 24.751097}
+    },
+      {"id": "Roman staduim Philipopol",
+      "position": {lat: 42.147719, lng: 24.748050}
+    },
+      {"id": "Old town",
+      "position": {lat: 42.151076, lng: 24.752288}
+    },
+      {"id": "Singin fountaines",
+      "position": {lat: 42.140633, lng: 24.745798}
+    },
+      {"id": "Monument of union",
+      "position": {lat: 42.151364, lng: 24.744446}
+    }
+]
+
+
+
+
   }
 
   updateQuery = (query) => {
@@ -41,8 +65,16 @@ class App extends Component {
         <Header/>
 
         <main className="main">
-          <Map
+          <Map2
             venues={this.state.venues}
+
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDziy5R3lKj_zp1jOfiuH-TAncmOqG1MGo&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `600px` }} />}
+            mapElement={<div style={{ height: `100%`}} />}
+            
+          markers = {this.state.markers}
+
           />
 
           <Search
