@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Info = ({ info }) => {
+const Info = ({ venueId }) => {
     return (
       <div style={{ padding: `10px` }}>
         <div style={{ fontSize: `16px`, fontColor: `black` }}>
-            {info}
+            Some stuff for the venue {venueId}
         </div>
       </div>
     )
