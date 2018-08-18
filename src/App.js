@@ -13,7 +13,6 @@ class App extends Component {
     venueIds: [],
     visibleVenues: [],
     visibleInfoWindow: '',
-
     isOpen: false,
     showInfo: null
   }
@@ -23,8 +22,6 @@ class App extends Component {
       visibleVenues: visibleVenues
     })
   }
-
-
 
   componentDidMount() {
     FoursquareAPI.getAllVenues()
@@ -41,21 +38,24 @@ class App extends Component {
   }
 
   showInfoWindow = (venue) => {
-    console.log('yes')
+    console.log(venue)
     this.setState({
-      visibleInfoWindow: venue
+      visibleInfoWindow: venue,
+      isOpen: true
     })
   }
 
-  showInfo = (showInfo, isOpen) => (i) => ({  
-    isOpen: !isOpen,
-    showInfoIndex: i
+onToggleOpen = () => {
+  this.setState({
+    isOpen: true
   })
-  
-  onToggleOpen = ({ isOpen }) => () => ({
-    isOpen: !isOpen,
-  })
+}
 
+onToggleClose = () => {
+  this.setState({
+    isOpen: false
+  })
+}
 
   render() {
     return (
@@ -64,25 +64,21 @@ class App extends Component {
         <Header/>
 
         <main className="main">
-
           <Map
             venues={this.state.visibleVenues}
-            // visibleVenues={this.state.visibleVenues}
-            // markers = {this.state.markers}
             showInfoWindow={this.showInfoWindow}
-
             showInfo={this.showInfo}
             onToggleOpen={this.onToggleOpen}
             isOpen={this.state.isOpen}
+            onToggleClose={this.onToggleClose}
+            visibleInfoWindow={this.state.visibleInfoWindow}
           />
-
           <Search
             venues={this.state.venues}
             visibleVenues={this.state.visibleVenues}
             updateVisibleVenues={this.updateVisibleVenues.bind(this)}
             showInfoWindow={this.showInfoWindow}
           />
-
         </main>
         <Footer/>
       </div>
