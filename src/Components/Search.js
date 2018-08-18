@@ -43,7 +43,9 @@ class Search extends Component {
                     <ul className="items-list">
                        {this.props.visibleVenues.map(venue => {
                                 return (
-                                    <li key={venue.id}>
+                                    <li key={venue.id}
+                                        onClick={() => {this.props.showInfoWindow(venue.id)}}
+                                    >
                                         {venue.name}
                                     </li>
                                 )

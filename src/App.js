@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Map2 from './Components/Map2'
+import Map from './Components/Map'
 import Header from './Components/Header'
 import Search from './Components/Search'
 import Footer from './Components/Footer'
@@ -11,7 +11,11 @@ class App extends Component {
   state = {
     venues: [],
     venueIds: [],
-    visibleVenues: []
+    visibleVenues: [],
+    visibleInfoWindow: '',
+
+    isOpen: false,
+    showInfo: null
   }
 
   updateVisibleVenues = (visibleVenues) => {
@@ -19,6 +23,8 @@ class App extends Component {
       visibleVenues: visibleVenues
     })
   }
+
+
 
   componentDidMount() {
     FoursquareAPI.getAllVenues()
@@ -34,6 +40,23 @@ class App extends Component {
       })   
   }
 
+  showInfoWindow = (venue) => {
+    console.log('yes')
+    this.setState({
+      visibleInfoWindow: venue
+    })
+  }
+
+  showInfo = (showInfo, isOpen) => (i) => ({  
+    isOpen: !isOpen,
+    showInfoIndex: i
+  })
+  
+  onToggleOpen = ({ isOpen }) => () => ({
+    isOpen: !isOpen,
+  })
+
+
   render() {
     return (
       <div className="App">
@@ -41,20 +64,23 @@ class App extends Component {
         <Header/>
 
         <main className="main">
-          <Map2
+
+          <Map
             venues={this.state.visibleVenues}
-            visibleVenues={this.state.visibleVenues}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDziy5R3lKj_zp1jOfiuH-TAncmOqG1MGo&v=3.exp&libraries=geometry,drawing,places"
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `600px` }} />}
-            mapElement={<div style={{ height: `100%`}} />}
-            markers = {this.state.markers}
+            // visibleVenues={this.state.visibleVenues}
+            // markers = {this.state.markers}
+            showInfoWindow={this.showInfoWindow}
+
+            showInfo={this.showInfo}
+            onToggleOpen={this.onToggleOpen}
+            isOpen={this.state.isOpen}
           />
 
           <Search
             venues={this.state.venues}
             visibleVenues={this.state.visibleVenues}
             updateVisibleVenues={this.updateVisibleVenues.bind(this)}
+            showInfoWindow={this.showInfoWindow}
           />
 
         </main>
